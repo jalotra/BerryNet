@@ -66,7 +66,13 @@ def main():
 
     if args['mode'] == 'stream':
         counter = 0
-        capture = cv2.VideoCapture(0)
+
+        try:
+            capture = cv2.VideoCapture('rtsp://10.0.0.43:8554/live.sdp')
+        except Exception as e:
+            logger.critical(e)
+
+        logger.debug('ready to capture source: rtsp://10.0.0.43:8554/live.sdp')
         while True:
             status, im = capture.read()
             if (status is False):
