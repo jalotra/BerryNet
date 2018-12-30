@@ -69,6 +69,7 @@ def main():
 
         try:
             capture = cv2.VideoCapture('rtsp://10.0.0.43:8554/live.sdp')
+            logger.debug('stream fps: {}'.format(capture.get(cv2.CAP_PROP_FPS)))
         except Exception as e:
             logger.critical(e)
 
@@ -88,7 +89,7 @@ def main():
             comm.send('berrynet/data/rgbimage', mqtt_payload)
             logger.debug('send: {} ms'.format(duration(t)))
 
-            time.sleep(1.0 / args['fps'])
+            #time.sleep(1.0 / args['fps'])
     elif args['mode'] == 'file' and args['filepath'] != '':
         # Prepare MQTT payload
         im = cv2.imread(args['filepath'])
