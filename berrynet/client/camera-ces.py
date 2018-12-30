@@ -69,7 +69,9 @@ def main():
 
         try:
             capture = cv2.VideoCapture('rtsp://10.0.0.43:8554/live.sdp')
-            logger.debug('stream fps: {}'.format(capture.get(cv2.CAP_PROP_FPS)))
+            logger.debug('stream fps (orig): {}'.format(capture.get(cv2.CAP_PROP_FPS)))
+            capture.set(cv2.CAP_PROP_FPS, 30)
+            logger.debug('stream fps (updated): {}'.format(capture.get(cv2.CAP_PROP_FPS)))
         except Exception as e:
             logger.critical(e)
 
