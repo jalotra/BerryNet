@@ -163,7 +163,7 @@ class OpenVINODetectorEngine(DLEngine):
         # Note: MKLDNN CPU-targeted custom layer support is not included
         #       because we do not use it yet.
         if device == 'CPU':
-            plugin_dirs = '/opt/intel/openvino_2019.1.144/deployment_tools/inference_engine/lib/intel64'
+            plugin_dirs = '/opt/intel/openvino/deployment_tools/inference_engine/lib/intel64'
             self.plugin = IEPlugin(device=device, plugin_dirs=plugin_dirs)
             self.plugin.add_cpu_extension(plugin_dirs + '/libcpu_extension_avx2.so')
             self.plugin.add_cpu_extension(plugin_dirs + '/libcpu_extension_avx512.so')
